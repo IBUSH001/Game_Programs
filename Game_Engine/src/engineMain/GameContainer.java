@@ -46,11 +46,29 @@ public class GameContainer implements Runnable{
 			{
 				
 			}
+			else
+			{
+				try
+				{
+					Thread.sleep(1);
+				}
+				catch(InterruptedException e)
+				{
+					e.printStackTrace();
+				}
+			}
 		}
+		dispose();
 	}
 	
 	private void dispose()
 	{
 		
+	}
+	
+	public static void main(String[] args)
+	{
+		GameContainer gc = new GameContainer();
+		gc.start();
 	}
 }
