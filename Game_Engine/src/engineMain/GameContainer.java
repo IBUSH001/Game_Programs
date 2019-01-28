@@ -11,8 +11,10 @@ public class GameContainer implements Runnable{
 	private boolean running = false;
 	private final double UPDATE_CAP = 1.0 / 60.0;
 	private int width = 320, height = 240;
-	private float scale = 1f;
-	private String title = "GameEngine v 0.1";
+	private float scale = 4f;
+	private String title = "GameEngine v 0.2";
+	
+	private Window window;
 	
 	/**
 	 * Creates a new GameContainer object
@@ -23,6 +25,8 @@ public class GameContainer implements Runnable{
 	
 	public void start()
 	{
+		window = new Window(this);
+		
 		thread = new Thread(this);
 		thread.run();
 	}
@@ -56,7 +60,7 @@ public class GameContainer implements Runnable{
 			
 			if(render)
 			{
-				
+				window.update();
 			}
 			else
 			{
