@@ -15,6 +15,7 @@ public class GameContainer implements Runnable{
 	private String title = "GameEngine v 0.2";
 	
 	private Window window;
+	private Renderer renderer;
 	
 	/**
 	 * Creates a new GameContainer object
@@ -26,6 +27,7 @@ public class GameContainer implements Runnable{
 	public void start()
 	{
 		window = new Window(this);
+		renderer = new Renderer(this);
 		
 		thread = new Thread(this);
 		thread.run();
@@ -60,6 +62,7 @@ public class GameContainer implements Runnable{
 			
 			if(render)
 			{
+				renderer.clear();
 				window.update();
 			}
 			else
