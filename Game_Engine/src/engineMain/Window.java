@@ -58,4 +58,9 @@ public class Window {
 	{
 		return this.image;
 	}
+	
+	public JFrame getFrame()
+	{
+		return this.frame;
+	}
 }

@@ -16,18 +16,22 @@ public class GameContainer implements Runnable{
 	
 	private Window window;
 	private Renderer renderer;
+	private Input input;
+	private AbstractGame game;
 	
 	/**
 	 * Creates a new GameContainer object
 	 */
-	public GameContainer()
+	public GameContainer(AbstractGame game)
 	{
+		this.game = game;
 	}
 	
 	public void start()
 	{
 		window = new Window(this);
 		renderer = new Renderer(this);
+		input = new Input(this);
 		
 		thread = new Thread(this);
 		thread.run();
@@ -58,11 +62,14 @@ public class GameContainer implements Runnable{
 			{
 				unprocessedTime -= UPDATE_CAP;
 				render = true;
+				input.update();
+				game.update(this, (float)UPDATE_CAP);
 			}
 			
 			if(render)
 			{
 				renderer.clear();
+				game.render(this, renderer);
 				window.update();
 			}
 			else
@@ -83,12 +90,6 @@ public class GameContainer implements Runnable{
 	private void dispose()
 	{
 		
-	}
-	
-	public static void main(String[] args)
-	{
-		GameContainer gc = new GameContainer();
-		gc.start();
 	}
 	
 	public int getWidth()
