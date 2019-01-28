@@ -108,6 +108,11 @@ public class GameContainer implements Runnable{
 		return this.title;
 	}
 	
+	public Window getWindow()
+	{
+		return window;
+	}
+	
 	public void setWidth(int width)
 	{
 		this.width = width;
